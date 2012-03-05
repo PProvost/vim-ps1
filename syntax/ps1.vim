@@ -10,6 +10,7 @@
 " Contributions by:
 " 	Jared Parsons <jaredp@beanseed.org>
 " 	Heath Stewart <heaths@microsoft.com>
+" 	Michael B. Smith
 
 " Compatible VIM syntax file start
 if version < 600
@@ -25,20 +26,34 @@ syn case ignore
 syn sync minlines=100
 
 " Comments and special comment words
-syn keyword ps1CommentTodo TODO FIXME XXX TBD HACK contained
+syn keyword ps1CommentTodo TODO FIXME XXX TBD HACK NOTE contained
 syn match ps1Comment /#.*/ contains=ps1CommentTodo
+syn region ps1Comment start="<#" end="#>" contains=ps1CommentTodo
 
 " Language keywords and elements
-syn keyword ps1Conditional if else elseif switch
-syn keyword ps1Repeat while default for do until break continue
-syn match ps1Repeat /\<foreach\>/ nextgroup=ps1Cmdlet
-syn keyword ps1Keyword return filter in trap throw param begin process end
-syn keyword ps1Keyword try catch finally
-syn match ps1Keyword /\<while\>/ nextgroup=ps1Cmdlet
+syn keyword ps1Conditional if else elseif switch default
+syn keyword ps1Repeat while for do until break continue foreach in
+syn match ps1Repeat /\<foreach\>/ nextgroup=ps1Block skipwhite
+syn match ps1Keyword /\<while\>/ nextgroup=ps1Block skipwhite
+syn match ps1Keyword /\<where\>/ nextgroup=ps1Block skipwhite
+
+syn keyword ps1Exception begin process end exit
+syn keyword ps1Keyword try catch finally throw
+syn keyword ps1Keyword return filter in trap param data dynamicparam 
+syn match ps1Keyword /&/
+syn keyword ps1Constant $true $false $null
+syn match ps1Constant +\$?+
+syn match ps1Constant +\$_+
+syn match ps1Constant +\$\$+
+syn match ps1Constant +\$^+
+
+" Keywords reserved for future use
+syn keywords ps1Keyword class define from using var
 
 " Functions and Cmdlets
 syn match ps1Cmdlet /\w\+-\w\+/
 syn keyword ps1Keyword function nextgroup=ps1Function skipwhite
+syn keyword ps1Keyword filter nextgroup=ps1Function skipwhite
 syn match ps1Function /\w\+-*\w*/ contained
 
 " Type declarations
@@ -54,23 +69,32 @@ syn match ps1VariableName /\w\+/ contained
 
 " Operators all start w/ dash
 syn match ps1OperatorStart /-c\?/ nextgroup=ps1Operator
-syn keyword ps1Operator eq ne ge gt lt le like notlike match notmatch replace /contains/ notcontains contained
-syn keyword ps1Operator ieq ine ige igt ile ilt ilike inotlike imatch inotmatch ireplace icontains inotcontains contained
-syn keyword ps1Operator ceq cne cge cgt clt cle clike cnotlike cmatch cnotmatch creplace ccontains cnotcontains contained
-syn keyword ps1Operator is isnot as
-syn keyword ps1Operator and or band bor not
-syn keyword ps1Operator f
+syn keyword ps1Operator eq ne ge gt lt le like notlike match notmatch replace split /contains/ notcontains contained
+syn keyword ps1Operator ieq ine ige igt ile ilt ilike inotlike imatch inotmatch ireplace isplit icontains inotcontains contained
+syn keyword ps1Operator ceq cne cge cgt clt cle clike cnotlike cmatch cnotmatch creplace csplit ccontains cnotcontains contained
+syn keyword ps1Operator is isnot as join contained
+syn keyword ps1Operator and or not xor band bor bnot bxor contained
+syn keyword ps1Operator f contained
 
 " Regular Strings
+" These aren't precisely correct and could use some work
 syn region ps1String start=/"/ skip=/`"/ end=/"/ 
-syn region ps1String start=/'/ end=/'/  
+syn region ps1String start=/'/ skip=/''/ end=/'/  
 
 " Here-Strings
 syn region ps1String start=/@"$/ end=/^"@$/
 syn region ps1String start=/@'$/ end=/^'@$/
 
 " Numbers
-syn match ps1Number /\<[0-9]\+/
+" syn match ps1Number /\<[0-9]\+/
+syn match   ps1Number		"\<\(0[xX]\x\+\|\d\+\)\([MGTP][B]\)\=\>"
+syn match   ps1Number		"\(\<\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[dD]\="
+syn match   ps1Number		"\<\d\+[eE][-+]\=\d\+[dD]\=\>"
+syn match   ps1Number		"\<\d\+\([eE][-+]\=\d\+\)\=[dD]\>"
+
+
+" Folding blocks
+syn region ps1Block start=/{/ end=/}/ transparent fold
 
 " Setup default color highlighting
 if version >= 508 || !exists("did_ps1_syn_inits")
@@ -81,6 +105,10 @@ if version >= 508 || !exists("did_ps1_syn_inits")
     command -nargs=+ HiLink hi def link <args>
   endif
 
+	HiLink ps1Number Number
+	HiLink ps1Block Block
+	HiLink ps1Exception Exception
+	HiLink ps1Constant Constant
   HiLink ps1String String
   HiLink ps1Conditional Conditional
   HiLink ps1Function Function
