@@ -1,0 +1,9 @@
+*ps1.txt*  A Windows PowerShell syntax plugin for Vim
+
+Author: Peter Provost <http://www.github.com/PProvost>
+License: Apache 2.0
+
+OVERVIEW
+
+This plugin provides Vim syntax, indent and filetype detection for Windows
+PowerShell.
