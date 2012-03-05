@@ -1,16 +1,9 @@
 " Vim syntax file
 " Language:	Windows PowerShell
 " Maintainer:	Peter Provost <peter@provost.org>
-" Version: 2.7
-" Url: http://www.vim.org/scripts/script.php?script_id=1327
-" 
-" $LastChangedDate: 2011-12-17 14:40:44 -0700 (Sat, 17 Dec 2011) $
-" $Rev: 405 $
-"
-" Contributions by:
-" 	Jared Parsons <jaredp@beanseed.org>
-" 	Heath Stewart <heaths@microsoft.com>
-" 	Michael B. Smith
+" Version: 2.8
+" Project Repository: https://github.com/PProvost/vim-ps1
+" Vim Script Page: http://www.vim.org/scripts/script.php?script_id=1327"
 
 " Compatible VIM syntax file start
 if version < 600

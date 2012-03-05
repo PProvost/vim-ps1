@@ -1,10 +1,9 @@
 " Vim filetype plugin file
 " Language:	Windows PowerShell
 " Maintainer:	Peter Provost <peter@provost.org>
-" Version: 1.0
-"
-" $LastChangedDate $
-" $Rev $
+" Version: 2.8
+" Project Repository: https://github.com/PProvost/vim-ps1
+" Vim Script Page: http://www.vim.org/scripts/script.php?script_id=1327
 
 " Only do this when not done yet for this buffer
 if exists("b:did_ftplugin") | finish | endif

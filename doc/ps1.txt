@@ -2,8 +2,15 @@
 
 Author: Peter Provost <http://www.github.com/PProvost>
 License: Apache 2.0
+Version: 2.8
 
-OVERVIEW
+INTRODUCTION                               *ps1-syntax*
 
 This plugin provides Vim syntax, indent and filetype detection for Windows
 PowerShell.
+
+ABOUT                                      *ps1-about*
+
+Grab the latest version or report a bug on GitHub:
+
+http://github.com/PProvost/vim-ps1
