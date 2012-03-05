@@ -1,3 +1,2 @@
-autocmd BufNewFile,BufRead, *.ps1	    setfiletype ps1
-autocmd BufNewFile,BufRead, *.psm1	    setfiletype ps1
-
+au BufNewFile,BufRead 	*.ps1 	set ft=ps1
+au BufNewFile,BufRead 	*.psm1 	set ft=ps1
