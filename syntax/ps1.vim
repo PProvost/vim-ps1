@@ -41,7 +41,7 @@ syn match ps1Constant +\$\$+
 syn match ps1Constant +\$^+
 
 " Keywords reserved for future use
-syn keywords ps1Keyword class define from using var
+syn keyword ps1Keyword class define from using var
 
 " Functions and Cmdlets
 syn match ps1Cmdlet /\w\+-\w\+/
