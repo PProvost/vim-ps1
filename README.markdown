@@ -8,6 +8,7 @@ It provides nice syntax coloring and indenting for Windows PowerShell (.ps1)
 files, and also includes a filetype plugin so Vim can autodetect your PS1 scripts.
 
 Includes contributions by:
+
 * Jared Parsons <jaredp@beanseed.org>
 * Heath Stewart <heaths@microsoft.com>
 * Michael B. Smith
@@ -21,7 +22,7 @@ Copy the included directories into your .vim or vimfiles directory.
 Or even better, use pathogen and simply pull it in like this:
 
     cd ~/.vim/bundle
-		git clone https://github.com/PProvost/vim-ps1.git
+    git clone https://github.com/PProvost/vim-ps1.git
 
 
 Comments and Suggestions
@@ -50,15 +51,15 @@ License
 Version History
 ---------------
 
-v2.8 (2012-03-05) Better number scanning, multiline comments, missing keywords and constants
-v2.7 (2008-09-22) Begin, process & end keywords. Better highlighting of foreach and where
-v2.6 (2007-03-05) Added unary -not operator
-v2.5 (2007-03-03) Updates for here-strings, comment todos, other small cleanups
-v2.4 (2007-03-02) Added elseif keyword
-v2.3 (2007-02-27) Added param keyword
-v2.2 (2007-02-19) Missing keywords
-v2.1 (2006-07-31) Update for renaming
-v2.0 (2005-12-21) Big update from Jared Parsons
-v1.3 (2005-12-20) Updates to syntax elements
-v1.2 (2005-08-13) Fix foreach and while problem
-v1.1 (2005-08-12) Initial release
+* v2.8 (2012-03-05) Better number scanning, multiline comments, missing keywords and constants
+* v2.7 (2008-09-22) Begin, process & end keywords. Better highlighting of foreach and where
+* v2.6 (2007-03-05) Added unary -not operator
+* v2.5 (2007-03-03) Updates for here-strings, comment todos, other small cleanups
+* v2.4 (2007-03-02) Added elseif keyword
+* v2.3 (2007-02-27) Added param keyword
+* v2.2 (2007-02-19) Missing keywords
+* v2.1 (2006-07-31) Update for renaming
+* v2.0 (2005-12-21) Big update from Jared Parsons
+* v1.3 (2005-12-20) Updates to syntax elements
+* v1.2 (2005-08-13) Fix foreach and while problem
+* v1.1 (2005-08-12) Initial release
