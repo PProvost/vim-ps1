@@ -51,15 +51,16 @@ License
 Version History
 ---------------
 
-* v2.8 (2012-03-05) Better number scanning, multiline comments, missing keywords and constants
-* v2.7 (2008-09-22) Begin, process & end keywords. Better highlighting of foreach and where
-* v2.6 (2007-03-05) Added unary -not operator
-* v2.5 (2007-03-03) Updates for here-strings, comment todos, other small cleanups
-* v2.4 (2007-03-02) Added elseif keyword
-* v2.3 (2007-02-27) Added param keyword
-* v2.2 (2007-02-19) Missing keywords
-* v2.1 (2006-07-31) Update for renaming
-* v2.0 (2005-12-21) Big update from Jared Parsons
-* v1.3 (2005-12-20) Updates to syntax elements
-* v1.2 (2005-08-13) Fix foreach and while problem
+* v2.81 (2012-03-05) Fixed a dumb typo
+* v2.8  (2012-03-05) Better number scanning, multiline comments, missing keywords and constants
+* v2.7  (2008-09-22) Begin, process & end keywords. Better highlighting of foreach and where
+* v2.6  (2007-03-05) Added unary -not operator
+* v2.5  (2007-03-03) Updates for here-strings, comment todos, other small cleanups
+* v2.4  (2007-03-02) Added elseif keyword
+* v2.3  (2007-02-27) Added param keyword
+* v2.2  (2007-02-19) Missing keywords
+* v2.1  (2006-07-31) Update for renaming
+* v2.0  (2005-12-21) Big update from Jared Parsons
+* v1.3  (2005-12-20) Updates to syntax elements
+* v1.2  (2005-08-13) Fix foreach and while problem
 * v1.1 (2005-08-12) Initial release

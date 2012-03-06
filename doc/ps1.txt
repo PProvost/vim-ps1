@@ -2,7 +2,7 @@
 
 Author: Peter Provost <http://www.github.com/PProvost>
 License: Apache 2.0
-Version: 2.8
+Version: 2.81
 
 INTRODUCTION                               *ps1-syntax*
 
