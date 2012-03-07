@@ -18,10 +18,16 @@ syn case ignore
 " Sync-ing method
 syn sync minlines=100
 
+" Certain tokens can't appear at the top level of the document
+syn cluster ps1NotTop contains=@ps1Comment,ps1CDocParam,ps1Function
+
 " Comments and special comment words
 syn keyword ps1CommentTodo TODO FIXME XXX TBD HACK NOTE contained
-syn match ps1Comment /#.*/ contains=ps1CommentTodo
-syn region ps1Comment start="<#" end="#>" contains=ps1CommentTodo
+syn match ps1CDocParam /.*/ contained
+syn match ps1CommentDoc /^\s*\zs\.\w\+\>/ nextgroup=ps1CDocParam contained
+syn match ps1CommentDoc /#\s*\zs\.\w\+\>/ nextgroup=ps1CDocParam contained
+syn match ps1Comment /#.*/ contains=ps1CommentTodo,ps1CommentDoc
+syn region ps1Comment start="<#" end="#>" contains=ps1CommentTodo,ps1CommentDoc
 
 " Language keywords and elements
 syn keyword ps1Conditional if else elseif switch default
@@ -71,12 +77,18 @@ syn keyword ps1Operator f contained
 
 " Regular Strings
 " These aren't precisely correct and could use some work
-syn region ps1String start=/"/ skip=/`"/ end=/"/ 
-syn region ps1String start=/'/ skip=/''/ end=/'/  
+syn region ps1String start=/"/ skip=/`"/ end=/"/ contains=@ps1StringSpecial 
+syn region ps1String start=/'/ skip=/''/ end=/'/
 
 " Here-Strings
-syn region ps1String start=/@"$/ end=/^"@$/
+syn region ps1String start=/@"$/ end=/^"@$/ contains=@ps1StringSpecial
 syn region ps1String start=/@'$/ end=/^'@$/
+
+" Interpolation
+syn match ps1Escape /`./ contained
+syn region ps1Interpolation matchgroup=ps1InterpolationDelimiter start="$(" end=")" contained contains=ALLBUT,@ps1NotTop
+syn region ps1NestedParentheses start="(" skip="\\\\\|\\)" matchgroup=ps1Interpolation end=")" transparent contained
+syn cluster ps1StringSpecial contains=ps1Escape,ps1Interpolation,ps1Variable,ps1Boolean,ps1Constant,ps1BuiltIn
 
 " Numbers
 " syn match ps1Number /\<[0-9]\+/
@@ -85,6 +97,13 @@ syn match   ps1Number		"\(\<\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[dD]\="
 syn match   ps1Number		"\<\d\+[eE][-+]\=\d\+[dD]\=\>"
 syn match   ps1Number		"\<\d\+\([eE][-+]\=\d\+\)\=[dD]\>"
 
+" Constants
+syn match ps1Boolean "$\%(true\|false\)\>"
+syn match ps1Constant /\$null\>/
+syn match ps1BuiltIn "$^\|$?\|$_\|$\$"
+syn match ps1BuiltIn "$\%(args\|error\|foreach\|home\|input\)\>"
+syn match ps1BuiltIn "$\%(match\(es\)\?\|myinvocation\|host\|lastexitcode\)\>"
+syn match ps1BuiltIn "$\%(ofs\|shellid\|stacktrace\)\>"
 
 " Folding blocks
 syn region ps1Block start=/{/ end=/}/ transparent fold
@@ -103,17 +122,24 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 	HiLink ps1Exception Exception
 	HiLink ps1Constant Constant
   HiLink ps1String String
+  HiLink ps1Escape SpecialChar
+  HiLink ps1InterpolationDelimiter Delimiter
   HiLink ps1Conditional Conditional
   HiLink ps1Function Function
   HiLink ps1Variable Identifier
   HiLink ps1ScopedVariable Identifier
   HiLink ps1VariableName Identifier
+  HiLink ps1Boolean Boolean
+  HiLink ps1Constant Constant
+  HiLink ps1BuiltIn StorageClass
   HiLink ps1Type Type
   HiLink ps1Scope Type
   HiLink ps1StandaloneType Type
   HiLink ps1Number Number
   HiLink ps1Comment Comment
   HiLink ps1CommentTodo Todo
+  HiLink ps1CommentDoc Tag
+  HiLink ps1CDocParam Todo
   HiLink ps1Operator Operator
   HiLink ps1Repeat Repeat
   HiLink ps1RepeatAndCmdlet Repeat
