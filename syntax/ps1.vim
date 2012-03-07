@@ -77,12 +77,18 @@ syn keyword ps1Operator f contained
 
 " Regular Strings
 " These aren't precisely correct and could use some work
-syn region ps1String start=/"/ skip=/`"/ end=/"/ 
-syn region ps1String start=/'/ skip=/''/ end=/'/  
+syn region ps1String start=/"/ skip=/`"/ end=/"/ contains=@ps1StringSpecial 
+syn region ps1String start=/'/ skip=/''/ end=/'/
 
 " Here-Strings
-syn region ps1String start=/@"$/ end=/^"@$/
+syn region ps1String start=/@"$/ end=/^"@$/ contains=@ps1StringSpecial
 syn region ps1String start=/@'$/ end=/^'@$/
+
+" Interpolation
+syn match ps1Escape /`./ contained
+syn region ps1Interpolation matchgroup=ps1InterpolationDelimiter start="$(" end=")" contained contains=ALLBUT,@ps1NotTop
+syn region ps1NestedParentheses start="(" skip="\\\\\|\\)" matchgroup=ps1Interpolation end=")" transparent contained
+syn cluster ps1StringSpecial contains=ps1Escape,ps1Interpolation,ps1Variable,ps1Boolean,ps1Constant,ps1BuiltIn
 
 " Numbers
 " syn match ps1Number /\<[0-9]\+/
@@ -109,6 +115,8 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 	HiLink ps1Exception Exception
 	HiLink ps1Constant Constant
   HiLink ps1String String
+  HiLink ps1Escape SpecialChar
+  HiLink ps1InterpolationDelimiter Delimiter
   HiLink ps1Conditional Conditional
   HiLink ps1Function Function
   HiLink ps1Variable Identifier
