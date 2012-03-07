@@ -18,10 +18,16 @@ syn case ignore
 " Sync-ing method
 syn sync minlines=100
 
+" Certain tokens can't appear at the top level of the document
+syn cluster ps1NotTop contains=@ps1Comment,ps1CDocParam,ps1Function
+
 " Comments and special comment words
 syn keyword ps1CommentTodo TODO FIXME XXX TBD HACK NOTE contained
-syn match ps1Comment /#.*/ contains=ps1CommentTodo
-syn region ps1Comment start="<#" end="#>" contains=ps1CommentTodo
+syn match ps1CDocParam /.*/ contained
+syn match ps1CommentDoc /^\s*\zs\.\w\+\>/ nextgroup=ps1CDocParam contained
+syn match ps1CommentDoc /#\s*\zs\.\w\+\>/ nextgroup=ps1CDocParam contained
+syn match ps1Comment /#.*/ contains=ps1CommentTodo,ps1CommentDoc
+syn region ps1Comment start="<#" end="#>" contains=ps1CommentTodo,ps1CommentDoc
 
 " Language keywords and elements
 syn keyword ps1Conditional if else elseif switch default
@@ -114,6 +120,8 @@ if version >= 508 || !exists("did_ps1_syn_inits")
   HiLink ps1Number Number
   HiLink ps1Comment Comment
   HiLink ps1CommentTodo Todo
+  HiLink ps1CommentDoc Tag
+  HiLink ps1CDocParam Todo
   HiLink ps1Operator Operator
   HiLink ps1Repeat Repeat
   HiLink ps1RepeatAndCmdlet Repeat
