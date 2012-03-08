@@ -26,7 +26,7 @@ syn keyword ps1CommentTodo TODO FIXME XXX TBD HACK NOTE contained
 syn match ps1CDocParam /.*/ contained
 syn match ps1CommentDoc /^\s*\zs\.\w\+\>/ nextgroup=ps1CDocParam contained
 syn match ps1CommentDoc /#\s*\zs\.\w\+\>/ nextgroup=ps1CDocParam contained
-syn match ps1Comment /#.*/ contains=ps1CommentTodo,ps1CommentDoc
+syn match ps1Comment /#.*/ contains=ps1CommentTodo,ps1CommentDoc,@Spell
 syn region ps1Comment start="<#" end="#>" contains=ps1CommentTodo,ps1CommentDoc
 
 " Language keywords and elements
