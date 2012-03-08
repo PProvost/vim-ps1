@@ -51,6 +51,7 @@ License
 Version History
 ---------------
 
+* v2.9  (2012-03-08) Included tomasr's changes
 * v2.81 (2012-03-05) Fixed a dumb typo
 * v2.8  (2012-03-05) Better number scanning, multiline comments, missing keywords and constants
 * v2.7  (2008-09-22) Begin, process & end keywords. Better highlighting of foreach and where
