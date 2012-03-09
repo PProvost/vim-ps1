@@ -9,8 +9,9 @@ files, and also includes a filetype plugin so Vim can autodetect your PS1 script
 
 Includes contributions by:
 
-* Jared Parsons <jaredp@beanseed.org>
-* Heath Stewart <heaths@microsoft.com>
+* Tomas Restrepo
+* Jared Parsons
+* Heath Stewart
 * Michael B. Smith
 * Alexander Kostikov
 
