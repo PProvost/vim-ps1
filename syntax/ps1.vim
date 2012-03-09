@@ -27,7 +27,7 @@ syn match ps1CDocParam /.*/ contained
 syn match ps1CommentDoc /^\s*\zs\.\w\+\>/ nextgroup=ps1CDocParam contained
 syn match ps1CommentDoc /#\s*\zs\.\w\+\>/ nextgroup=ps1CDocParam contained
 syn match ps1Comment /#.*/ contains=ps1CommentTodo,ps1CommentDoc,@Spell
-syn region ps1Comment start="<#" end="#>" contains=ps1CommentTodo,ps1CommentDoc
+syn region ps1Comment start="<#" end="#>" contains=ps1CommentTodo,ps1CommentDoc,@Spell
 
 " Language keywords and elements
 syn keyword ps1Conditional if else elseif switch default
