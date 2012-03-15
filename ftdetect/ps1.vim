@@ -6,4 +6,5 @@
 " Vim Script Page: http://www.vim.org/scripts/script.php?script_id=1327
 
 au BufNewFile,BufRead 	*.ps1 	set ft=ps1
+au BufNewFile,BufRead 	*.psd1 	set ft=ps1
 au BufNewFile,BufRead 	*.psm1 	set ft=ps1
