@@ -4,6 +4,11 @@
 " Version: 2.9
 " Project Repository: https://github.com/PProvost/vim-ps1
 " Vim Script Page: http://www.vim.org/scripts/script.php?script_id=1327"
+"
+" The following settings are available for tuning syntax highlighting:
+"
+" let ps1_nofold_blocks = 1
+" let ps1_fold_sig = 1
 
 " Compatible VIM syntax file start
 if version < 600
@@ -106,7 +111,13 @@ syn match ps1BuiltIn "$\%(match\(es\)\?\|myinvocation\|host\|lastexitcode\)\>"
 syn match ps1BuiltIn "$\%(ofs\|shellid\|stacktrace\)\>"
 
 " Folding blocks
-syn region ps1Block start=/{/ end=/}/ transparent fold
+if !exists('g:ps1_nofold_blocks')
+  syn region ps1Block start=/{/ end=/}/ transparent fold
+endif
+
+if exists('g:ps1_fold_sig')
+  syn region ps1Signature start=/# SIG # Begin signature block/ end=/# SIG # End signature block/ transparent fold
+endif
 
 " Setup default color highlighting
 if version >= 508 || !exists("did_ps1_syn_inits")
@@ -117,10 +128,10 @@ if version >= 508 || !exists("did_ps1_syn_inits")
     command -nargs=+ HiLink hi def link <args>
   endif
 
-	HiLink ps1Number Number
-	HiLink ps1Block Block
-	HiLink ps1Exception Exception
-	HiLink ps1Constant Constant
+  HiLink ps1Number Number
+  HiLink ps1Block Block
+  HiLink ps1Exception Exception
+  HiLink ps1Constant Constant
   HiLink ps1String String
   HiLink ps1Escape SpecialChar
   HiLink ps1InterpolationDelimiter Delimiter
@@ -149,4 +160,4 @@ if version >= 508 || !exists("did_ps1_syn_inits")
   delcommand HiLink
 endif
 
-let b:current_syntax = "powershell"
+let b:current_syntax = "ps1"
