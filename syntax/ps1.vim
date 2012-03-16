@@ -1,6 +1,6 @@
 " Vim syntax file
-" Language:	Windows PowerShell
-" Maintainer:	Peter Provost <peter@provost.org>
+" Language:     Windows PowerShell
+" Maintainer:   Peter Provost <peter@provost.org>
 " Version: 2.9
 " Project Repository: https://github.com/PProvost/vim-ps1
 " Vim Script Page: http://www.vim.org/scripts/script.php?script_id=1327"
@@ -66,7 +66,7 @@ syn match ps1StandaloneType /[a-z0-9_.]\+/ contained
 syn keyword ps1Scope global local private script contained
 
 " Variables and other user defined items
-syn match ps1Variable /\$\w\+/	
+syn match ps1Variable /\$\w\+/  
 syn match ps1Variable /\${\w\+:\\\w\+}/ 
 syn match ps1ScopedVariable /\$\w\+:\w\+/ contains=ps1Scope
 syn match ps1VariableName /\w\+/ contained
@@ -97,10 +97,10 @@ syn cluster ps1StringSpecial contains=ps1Escape,ps1Interpolation,ps1Variable,ps1
 
 " Numbers
 " syn match ps1Number /\<[0-9]\+/
-syn match   ps1Number		"\<\(0[xX]\x\+\|\d\+\)\([MGTP][B]\)\=\>"
-syn match   ps1Number		"\(\<\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[dD]\="
-syn match   ps1Number		"\<\d\+[eE][-+]\=\d\+[dD]\=\>"
-syn match   ps1Number		"\<\d\+\([eE][-+]\=\d\+\)\=[dD]\>"
+syn match   ps1Number           "\<\(0[xX]\x\+\|\d\+\)\([MGTP][B]\)\=\>"
+syn match   ps1Number           "\(\<\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[dD]\="
+syn match   ps1Number           "\<\d\+[eE][-+]\=\d\+[dD]\=\>"
+syn match   ps1Number           "\<\d\+\([eE][-+]\=\d\+\)\=[dD]\>"
 
 " Constants
 syn match ps1Boolean "$\%(true\|false\)\>"
@@ -161,3 +161,5 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 endif
 
 let b:current_syntax = "ps1"
+
+" vim: expandtab ft=vim sts=2 sw=2 ts=8
