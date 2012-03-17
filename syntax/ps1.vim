@@ -97,7 +97,7 @@ syn cluster ps1StringSpecial contains=ps1Escape,ps1Interpolation,ps1Variable,ps1
 
 " Numbers
 " syn match ps1Number /\<[0-9]\+/
-syn match   ps1Number           "\<\(0[xX]\x\+\|\d\+\)\([MGTP][B]\)\=\>"
+syn match   ps1Number           "\<\(0[xX]\x\+\|\d\+\)\([KMGTP][B]\)\=\>"
 syn match   ps1Number           "\(\<\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[dD]\="
 syn match   ps1Number           "\<\d\+[eE][-+]\=\d\+[dD]\=\>"
 syn match   ps1Number           "\<\d\+\([eE][-+]\=\d\+\)\=[dD]\>"
