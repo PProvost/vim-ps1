@@ -25,28 +25,24 @@ unlet b:current_syntax
 syn region ps1xmlScriptBlock
       \ matchgroup=xmlTag     start="<Script>"
       \ matchgroup=xmlEndTag  end="</Script>"
-      \ display
       \ fold
       \ contains=@ps1xmlScriptBlock
       \ keepend
 syn region ps1xmlScriptBlock
       \ matchgroup=xmlTag     start="<ScriptBlock>"
       \ matchgroup=xmlEndTag  end="</ScriptBlock>"
-      \ display
       \ fold
       \ contains=@ps1xmlScriptBlock
       \ keepend
 syn region ps1xmlScriptBlock
       \ matchgroup=xmlTag     start="<GetScriptBlock>"
       \ matchgroup=xmlEndTag  end="</GetScriptBlock>"
-      \ display
       \ fold
       \ contains=@ps1xmlScriptBlock
       \ keepend
 syn region ps1xmlScriptBlock
       \ matchgroup=xmlTag     start="<SetScriptBlock>"
       \ matchgroup=xmlEndTag  end="</SetScriptBlock>"
-      \ display
       \ fold
       \ contains=@ps1xmlScriptBlock
       \ keepend
