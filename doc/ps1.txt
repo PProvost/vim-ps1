@@ -20,11 +20,16 @@ http://github.com/PProvost/vim-ps1
 FOLDING                                                           *ps1-folding*
 
 The ps1 syntax file provides syntax folding (see |:syn-fold|) for script blocks
-and digital signatures in scripts. Folding can be modified using: >
+and digital signatures in scripts.
+
+When 'foldmethod' is set to "syntax" then function script blocks will be
+folded unless you use the following in your .vimrc or before opening a script: >
 
     :let g:ps1_nofold_blocks = 1
-    :let g:ps1_fold_sig = 1
-    :set foldmethod=syntax
+<
+Digital signatures in scripts will also be folded unless you use: >
+
+    :let g:ps1_nofold_sig = 1
 <
 Note: syntax folding might slow down syntax highlighting significantly,
 especially for large files.

@@ -115,7 +115,7 @@ if !exists('g:ps1_nofold_blocks')
   syn region ps1Block start=/{/ end=/}/ transparent fold
 endif
 
-if exists('g:ps1_fold_sig')
+if !exists('g:ps1_nofold_sig')
   syn region ps1Signature start=/# SIG # Begin signature block/ end=/# SIG # End signature block/ transparent fold
 endif
 
