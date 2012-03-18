@@ -25,6 +25,23 @@ Or even better, use pathogen and simply pull it in like this:
     cd ~/.vim/bundle
     git clone https://github.com/PProvost/vim-ps1.git
 
+Folding
+-------
+
+The ps1 syntax file provides syntax folding for script blocks and digital 
+signatures in scripts.
+
+When 'foldmethod' is set to "syntax" then function script blocks will be
+folded unless you use the following in your .vimrc or before opening a script:
+
+    :let g:ps1_nofold_blocks = 1
+
+Digital signatures in scripts will also be folded unless you use:
+
+    :let g:ps1_nofold_sig = 1
+
+Note: syntax folding might slow down syntax highlighting significantly,
+especially for large files.
 
 Comments and Suggestions
 ------------------------

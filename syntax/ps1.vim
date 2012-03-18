@@ -1,15 +1,19 @@
 " Vim syntax file
-" Language:	Windows PowerShell
-" Maintainer:	Peter Provost <peter@provost.org>
-" Version: 2.9
+" Language:           Windows PowerShell
+" Maintainer:         Peter Provost <peter@provost.org>
+" Version:            2.9
 " Project Repository: https://github.com/PProvost/vim-ps1
-" Vim Script Page: http://www.vim.org/scripts/script.php?script_id=1327"
+" Vim Script Page:    http://www.vim.org/scripts/script.php?script_id=1327"
+"
+" The following settings are available for tuning syntax highlighting:
+"    let ps1_nofold_blocks = 1
+"    let ps1_fold_sig = 1
 
 " Compatible VIM syntax file start
 if version < 600
-  syntax clear
+	syntax clear
 elseif exists("b:current_syntax")
-  finish
+	finish
 endif
 
 " PowerShell doesn't care about case
@@ -61,8 +65,8 @@ syn match ps1StandaloneType /[a-z0-9_.]\+/ contained
 syn keyword ps1Scope global local private script contained
 
 " Variables and other user defined items
-syn match ps1Variable /\$\w\+/	
-syn match ps1Variable /\${\w\+:\\\w\+}/ 
+syn match ps1Variable /\$\w\+/
+syn match ps1Variable /\${\w\+:\\\w\+}/
 syn match ps1ScopedVariable /\$\w\+:\w\+/ contains=ps1Scope
 syn match ps1VariableName /\w\+/ contained
 
@@ -91,7 +95,6 @@ syn region ps1NestedParentheses start="(" skip="\\\\\|\\)" matchgroup=ps1Interpo
 syn cluster ps1StringSpecial contains=ps1Escape,ps1Interpolation,ps1Variable,ps1Boolean,ps1Constant,ps1BuiltIn
 
 " Numbers
-" syn match ps1Number /\<[0-9]\+/
 syn match   ps1Number		"\<\(0[xX]\x\+\|\d\+\)\([MGTP][B]\)\=\>"
 syn match   ps1Number		"\(\<\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[dD]\="
 syn match   ps1Number		"\<\d\+[eE][-+]\=\d\+[dD]\=\>"
@@ -106,47 +109,54 @@ syn match ps1BuiltIn "$\%(match\(es\)\?\|myinvocation\|host\|lastexitcode\)\>"
 syn match ps1BuiltIn "$\%(ofs\|shellid\|stacktrace\)\>"
 
 " Folding blocks
-syn region ps1Block start=/{/ end=/}/ transparent fold
+if !exists('g:ps1_nofold_blocks')
+	syn region ps1Block start=/{/ end=/}/ transparent fold
+endif
+
+if !exists('g:ps1_nofold_sig')
+	syn region ps1Signature start=/# SIG # Begin signature block/ end=/# SIG # End signature block/ transparent fold
+endif
 
 " Setup default color highlighting
 if version >= 508 || !exists("did_ps1_syn_inits")
-  if version < 508
-    let did_ps1_syn_inits = 1
-    command -nargs=+ HiLink hi link <args>
-  else
-    command -nargs=+ HiLink hi def link <args>
-  endif
+	if version < 508
+		let did_ps1_syn_inits = 1
+		command -nargs=+ HiLink hi link <args>
+	else
+		command -nargs=+ HiLink hi def link <args>
+	endif
 
 	HiLink ps1Number Number
 	HiLink ps1Block Block
 	HiLink ps1Exception Exception
 	HiLink ps1Constant Constant
-  HiLink ps1String String
-  HiLink ps1Escape SpecialChar
-  HiLink ps1InterpolationDelimiter Delimiter
-  HiLink ps1Conditional Conditional
-  HiLink ps1Function Function
-  HiLink ps1Variable Identifier
-  HiLink ps1ScopedVariable Identifier
-  HiLink ps1VariableName Identifier
-  HiLink ps1Boolean Boolean
-  HiLink ps1Constant Constant
-  HiLink ps1BuiltIn StorageClass
-  HiLink ps1Type Type
-  HiLink ps1Scope Type
-  HiLink ps1StandaloneType Type
-  HiLink ps1Number Number
-  HiLink ps1Comment Comment
-  HiLink ps1CommentTodo Todo
-  HiLink ps1CommentDoc Tag
-  HiLink ps1CDocParam Todo
-  HiLink ps1Operator Operator
-  HiLink ps1Repeat Repeat
-  HiLink ps1RepeatAndCmdlet Repeat
-  HiLink ps1Keyword Keyword
-  HiLink ps1KeywordAndCmdlet Keyword
-  HiLink ps1Cmdlet Statement
-  delcommand HiLink
+	HiLink ps1String String
+	HiLink ps1Escape SpecialChar
+	HiLink ps1InterpolationDelimiter Delimiter
+	HiLink ps1Conditional Conditional
+	HiLink ps1Function Function
+	HiLink ps1Variable Identifier
+	HiLink ps1ScopedVariable Identifier
+	HiLink ps1VariableName Identifier
+	HiLink ps1Boolean Boolean
+	HiLink ps1Constant Constant
+	HiLink ps1BuiltIn StorageClass
+	HiLink ps1Type Type
+	HiLink ps1Scope Type
+	HiLink ps1StandaloneType Type
+	HiLink ps1Number Number
+	HiLink ps1Comment Comment
+	HiLink ps1CommentTodo Todo
+	HiLink ps1CommentDoc Tag
+	HiLink ps1CDocParam Todo
+	HiLink ps1Operator Operator
+	HiLink ps1Repeat Repeat
+	HiLink ps1RepeatAndCmdlet Repeat
+	HiLink ps1Keyword Keyword
+	HiLink ps1KeywordAndCmdlet Keyword
+	HiLink ps1Cmdlet Statement
+	delcommand HiLink
 endif
 
-let b:current_syntax = "powershell"
+let b:current_syntax = "ps1"
+
