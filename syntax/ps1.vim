@@ -1,9 +1,14 @@
 " Vim syntax file
-" Language:	Windows PowerShell
-" Maintainer:	Peter Provost <peter@provost.org>
-" Version: 2.9
+" Language:     Windows PowerShell
+" Maintainer:   Peter Provost <peter@provost.org>
+" Version:      2.9
 " Project Repository: https://github.com/PProvost/vim-ps1
-" Vim Script Page: http://www.vim.org/scripts/script.php?script_id=1327"
+" Vim Script Page:    http://www.vim.org/scripts/script.php?script_id=1327"
+"
+" The following settings are available for tuning syntax highlighting:
+"
+" let ps1_nofold_blocks = 1
+" let ps1_fold_sig = 1
 
 " Compatible VIM syntax file start
 if version < 600
@@ -61,7 +66,7 @@ syn match ps1StandaloneType /[a-z0-9_.]\+/ contained
 syn keyword ps1Scope global local private script contained
 
 " Variables and other user defined items
-syn match ps1Variable /\$\w\+/	
+syn match ps1Variable /\$\w\+/  
 syn match ps1Variable /\${\w\+:\\\w\+}/ 
 syn match ps1ScopedVariable /\$\w\+:\w\+/ contains=ps1Scope
 syn match ps1VariableName /\w\+/ contained
@@ -92,10 +97,10 @@ syn cluster ps1StringSpecial contains=ps1Escape,ps1Interpolation,ps1Variable,ps1
 
 " Numbers
 " syn match ps1Number /\<[0-9]\+/
-syn match   ps1Number		"\<\(0[xX]\x\+\|\d\+\)\([MGTP][B]\)\=\>"
-syn match   ps1Number		"\(\<\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[dD]\="
-syn match   ps1Number		"\<\d\+[eE][-+]\=\d\+[dD]\=\>"
-syn match   ps1Number		"\<\d\+\([eE][-+]\=\d\+\)\=[dD]\>"
+syn match   ps1Number           "\<\(0[xX]\x\+\|\d\+\)\([KMGTP][B]\)\=\>"
+syn match   ps1Number           "\(\<\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[dD]\="
+syn match   ps1Number           "\<\d\+[eE][-+]\=\d\+[dD]\=\>"
+syn match   ps1Number           "\<\d\+\([eE][-+]\=\d\+\)\=[dD]\>"
 
 " Constants
 syn match ps1Boolean "$\%(true\|false\)\>"
@@ -106,7 +111,13 @@ syn match ps1BuiltIn "$\%(match\(es\)\?\|myinvocation\|host\|lastexitcode\)\>"
 syn match ps1BuiltIn "$\%(ofs\|shellid\|stacktrace\)\>"
 
 " Folding blocks
-syn region ps1Block start=/{/ end=/}/ transparent fold
+if !exists('g:ps1_nofold_blocks')
+  syn region ps1Block start=/{/ end=/}/ transparent fold
+endif
+
+if !exists('g:ps1_nofold_sig')
+  syn region ps1Signature start=/# SIG # Begin signature block/ end=/# SIG # End signature block/ transparent fold
+endif
 
 " Setup default color highlighting
 if version >= 508 || !exists("did_ps1_syn_inits")
@@ -117,10 +128,10 @@ if version >= 508 || !exists("did_ps1_syn_inits")
     command -nargs=+ HiLink hi def link <args>
   endif
 
-	HiLink ps1Number Number
-	HiLink ps1Block Block
-	HiLink ps1Exception Exception
-	HiLink ps1Constant Constant
+  HiLink ps1Number Number
+  HiLink ps1Block Block
+  HiLink ps1Exception Exception
+  HiLink ps1Constant Constant
   HiLink ps1String String
   HiLink ps1Escape SpecialChar
   HiLink ps1InterpolationDelimiter Delimiter
@@ -149,4 +160,6 @@ if version >= 508 || !exists("did_ps1_syn_inits")
   delcommand HiLink
 endif
 
-let b:current_syntax = "powershell"
+let b:current_syntax = "ps1"
+
+" vim: expandtab ft=vim sts=2 sw=2 ts=8

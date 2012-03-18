@@ -1,16 +1,38 @@
-*ps1.txt*  A Windows PowerShell syntax plugin for Vim
+*ps1.txt*     A Windows PowerShell syntax plugin for Vim
 
-Author: Peter Provost <http://www.github.com/PProvost>
-License: Apache 2.0
-Version: 2.9
+Author:     Peter Provost <http://www.github.com/PProvost>
+License:    Apache 2.0
+Version:    2.9
 
-INTRODUCTION                               *ps1-syntax*
+INTRODUCTION                                                       *ps1-syntax*
 
 This plugin provides Vim syntax, indent and filetype detection for Windows
-PowerShell.
+PowerShell scripts, modules, and XML configuration files.
 
-ABOUT                                      *ps1-about*
+
+ABOUT                                                               *ps1-about*
 
 Grab the latest version or report a bug on GitHub:
 
 http://github.com/PProvost/vim-ps1
+
+
+FOLDING                                                           *ps1-folding*
+
+The ps1 syntax file provides syntax folding (see |:syn-fold|) for script blocks
+and digital signatures in scripts.
+
+When 'foldmethod' is set to "syntax" then function script blocks will be
+folded unless you use the following in your .vimrc or before opening a script: >
+
+    :let g:ps1_nofold_blocks = 1
+<
+Digital signatures in scripts will also be folded unless you use: >
+
+    :let g:ps1_nofold_sig = 1
+<
+Note: syntax folding might slow down syntax highlighting significantly,
+especially for large files.
+
+------------------------------------------------------------------------------
+ vim: expandtab ft=help sts=4 sw=4 ts=8
