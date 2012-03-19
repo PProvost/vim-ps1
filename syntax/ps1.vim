@@ -95,7 +95,7 @@ syn region ps1NestedParentheses start="(" skip="\\\\\|\\)" matchgroup=ps1Interpo
 syn cluster ps1StringSpecial contains=ps1Escape,ps1Interpolation,ps1Variable,ps1Boolean,ps1Constant,ps1BuiltIn
 
 " Numbers
-syn match   ps1Number		"\<\(0[xX]\x\+\|\d\+\)\([MGTP][B]\)\=\>"
+syn match   ps1Number		"\<\(0[xX]\x\+\|\d\+\)\([KMGTP][B]\)\=\>"
 syn match   ps1Number		"\(\<\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[dD]\="
 syn match   ps1Number		"\<\d\+[eE][-+]\=\d\+[dD]\=\>"
 syn match   ps1Number		"\<\d\+\([eE][-+]\=\d\+\)\=[dD]\>"
