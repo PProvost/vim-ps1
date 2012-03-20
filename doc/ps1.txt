@@ -34,3 +34,5 @@ Digital signatures in scripts will also be folded unless you use: >
 Note: syntax folding might slow down syntax highlighting significantly,
 especially for large files.
 
+------------------------------------------------------------------------------
+ vim:ft=help:
