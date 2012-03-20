@@ -7,7 +7,7 @@
 "
 " The following settings are available for tuning syntax highlighting:
 "    let ps1_nofold_blocks = 1
-"    let ps1_fold_sig = 1
+"    let ps1_nofold_sig = 1
 
 " Compatible VIM syntax file start
 if version < 600
