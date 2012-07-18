@@ -14,10 +14,13 @@ let b:did_ftplugin = 1
 setlocal tw=0
 setlocal commentstring=#%s
 setlocal formatoptions=tcqro
+" Enable autocompletion of hyphenated PowerShell commands,
+" e.g. Get-Content or Get-ADUser
+setlocal iskeyword+=-
 
 " Change the browse dialog on Win32 to show mainly PowerShell-related files
 if has("gui_win32")
-	let b:browsefilter = 
+	let b:browsefilter =
 				\ "All PowerShell Files (*.ps1, *.psd1, *.psm1, *.ps1xml)\t*.ps1;*.psd1;*.psm1;*.ps1xml\n" .
 				\ "PowerShell Script Files (*.ps1)\t*.ps1\n" .
 				\ "PowerShell Module Files (*.psd1, *.psm1)\t*.psd1;*.psm1\n" .
