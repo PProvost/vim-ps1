@@ -11,8 +11,10 @@ if exists("b:did_indent")
 endif
 let b:did_indent = 1
 
-" PS indenting is like indenting C
-setlocal cindent cinoptions& cinoptions+=+0
+" smartindent is good enough for powershell
+setlocal smartindent
+" disable the indent removal for # marks
+inoremap # X#
 
-let b:undo_indent = "setl cin<"
+let b:undo_indent = "setl si<"
 
