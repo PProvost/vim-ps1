@@ -20,7 +20,7 @@ Installation
 
 Copy the included directories into your .vim or vimfiles directory.
 
-Or even better, use [pathogen.vim](1) and simply pull it in like this:
+Or even better, use [pathogen.vim][1] and simply pull it in like this:
 
     cd ~/.vim/bundle
     git clone https://github.com/PProvost/vim-ps1.git
@@ -46,8 +46,8 @@ especially for large files.
 Comments and Suggestions
 ------------------------
 
-Please follow, fork or submit issues on [GitHub](https://github.com/PProvost/vim-ps1) and if you
-find it useful, please vote for it on [vim.org](http://www.vim.org/scripts/script.php?script_id=1327).
+Please follow, fork or submit issues on [GitHub][2] and if you
+find it useful, please vote for it on [vim.org][3].
 
 License
 -------
@@ -86,3 +86,5 @@ Version History
 * v1.1 (2005-08-12) Initial release
 
 [1]: https://github.com/tpope/vim-pathogen
+[2]: https://github.com/PProvost/vim-ps1
+[3]: http://www.vim.org/scripts/script.php?script_id=1327
