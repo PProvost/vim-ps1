@@ -69,6 +69,7 @@ License
 Version History
 ---------------
 
+* v2.10 (2013-06-24) Added Heath Stewart's here strings fix
 * v2.9  (2012-03-08) Included tomasr's changes
 * v2.81 (2012-03-05) Fixed a dumb typo
 * v2.8  (2012-03-05) Better number scanning, multiline comments, missing keywords and constants
