@@ -2,7 +2,7 @@
 
 Maintainer: Peter Provost <http://www.github.com/PProvost>
 License:    Apache 2.0
-Version:    2.9
+Version:    2.10
 
 INTRODUCTION                                                    *ps1-syntax*
 

@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:           Windows PowerShell XML
 " Maintainer:         Peter Provost <peter@provost.org>
-" Version:            2.9
+" Version:            2.10
 " Project Repository: https://github.com/PProvost/vim-ps1
 " Vim Script Page:    http://www.vim.org/scripts/script.php?script_id=1327"
 
