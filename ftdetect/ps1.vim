@@ -8,3 +8,4 @@
 au BufNewFile,BufRead   *.ps1   set ft=ps1
 au BufNewFile,BufRead   *.psd1  set ft=ps1
 au BufNewFile,BufRead   *.psm1  set ft=ps1
+au BufNewFile,BufRead   *.pssc  set ft=ps1
