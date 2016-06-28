@@ -58,6 +58,9 @@ syn match ps1Cmdlet /\w\+-\w\+/
 syn keyword ps1Keyword function nextgroup=ps1Function skipwhite
 syn keyword ps1Keyword filter nextgroup=ps1Function skipwhite
 syn keyword ps1Keyword workflow nextgroup=ps1Function skipwhite
+syn keyword ps1Keyword configuration nextgroup=ps1Function skipwhite
+syn keyword ps1Keyword class nextgroup=ps1Function skipwhite
+syn keyword ps1Keyword enum nextgroup=ps1Function skipwhite
 syn match ps1Function /\w\+-*\w*/ contained
 
 " Type declarations
