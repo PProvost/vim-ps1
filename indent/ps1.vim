@@ -8,11 +8,11 @@
 " Changelist:
 " 	Ver		Date		By			Fixed indentation of...
 " 	-----	----------	--------	-----------------------------------------
-"	1.0		2009-10-04	LiorE		Comment rows
-" 	2.0		2009-10-18	LiorE		Lines after (.*), comments after '{' or
-"					 				'}' and many many other things. I've made
-"					 				this a major version change because there
-"					 				are many changes in the behavior.
+"	1.0     2009-10-04	LiorE       Comment rows
+" 	2.0     2009-10-18	LiorE       Lines after (.*), comments after '{' or
+"					 		        '}' and many many other things. I've made
+"					 		        this a major version change because there
+"					 		        are many changes in the behavior.
 " 	2.0.1   2016-08-10	cranej      Remove debug code
 
 " Dedicated to my loving and supporting family: Anat, Amit and Ofir.
