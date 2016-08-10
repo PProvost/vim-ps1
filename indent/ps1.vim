@@ -1,6 +1,8 @@
 " Vim indent file
 " Language:		Windows PowerShell
-" Maintainer:	Crane Jin <crane@cranejin.com>
+" Maintainer:
+"   Lior Elia - http://blogs.msdn.com/lior
+"   Crane Jin <crane@cranejin.com>
 " Version:		2.0.1
 " Last Change:	2016 Aug 10
 " Changelist:
@@ -11,7 +13,7 @@
 "					 				'}' and many many other things. I've made
 "					 				this a major version change because there
 "					 				are many changes in the behavior.
-" 	2.0.1		2016-08-10	cranej      Remove debug code
+" 	2.0.1   2016-08-10	cranej      Remove debug code
 
 " Dedicated to my loving and supporting family: Anat, Amit and Ofir.
 
