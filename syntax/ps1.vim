@@ -16,6 +16,9 @@ elseif exists("b:current_syntax")
 	finish
 endif
 
+" Operators contain dashes
+setlocal iskeyword+=-
+
 " PowerShell doesn't care about case
 syn case ignore
 
@@ -43,7 +46,6 @@ syn match ps1Keyword /\<where\>/ nextgroup=ps1Block skipwhite
 syn keyword ps1Exception begin process end exit inlinescript parallel sequence
 syn keyword ps1Keyword try catch finally throw
 syn keyword ps1Keyword return filter in trap param data dynamicparam 
-syn match ps1Keyword /&/
 syn keyword ps1Constant $true $false $null
 syn match ps1Constant +\$?+
 syn match ps1Constant +\$_+
@@ -76,14 +78,31 @@ syn match ps1Variable /\${\w\+:\\\w\+}/
 syn match ps1ScopedVariable /\$\w\+:\w\+/ contains=ps1Scope
 syn match ps1VariableName /\w\+/ contained
 
-" Operators all start w/ dash
-syn match ps1OperatorStart /-c\?/ nextgroup=ps1Operator
-syn keyword ps1Operator eq ne ge gt lt le like notlike match notmatch replace split /contains/ notcontains contained
-syn keyword ps1Operator ieq ine ige igt ile ilt ilike inotlike imatch inotmatch ireplace isplit icontains inotcontains contained
-syn keyword ps1Operator ceq cne cge cgt clt cle clike cnotlike cmatch cnotmatch creplace csplit ccontains cnotcontains contained
-syn keyword ps1Operator is isnot as join contained
-syn keyword ps1Operator and or not xor band bor bnot bxor contained
-syn keyword ps1Operator f contained
+" Operators
+syn keyword ps1Operator -eq -ne -ge -gt -lt -le -like -notlike -match -notmatch -replace -split -contains -notcontains
+syn keyword ps1Operator -ieq -ine -ige -igt -ile -ilt -ilike -inotlike -imatch -inotmatch -ireplace -isplit -icontains -inotcontains
+syn keyword ps1Operator -ceq -cne -cge -cgt -clt -cle -clike -cnotlike -cmatch -cnotmatch -creplace -csplit -ccontains -cnotcontains
+syn keyword ps1Operator -in -notin
+syn keyword ps1Operator -is -isnot -as -join
+syn keyword ps1Operator -and -or -not -xor -band -bor -bnot -bxor
+syn keyword ps1Operator -f
+syn match ps1Operator /!/
+syn match ps1Operator /=/
+syn match ps1Operator /+=/
+syn match ps1Operator /-=/
+syn match ps1Operator /\*=/
+syn match ps1Operator /\/=/
+syn match ps1Operator /%=/
+syn match ps1Operator /+/
+syn match ps1Operator /-\(\s\|\d\|\$\|(\)\@=/
+syn match ps1Operator /\*/
+syn match ps1Operator /\//
+syn match ps1Operator /|/
+syn match ps1Operator /%/
+syn match ps1Operator /&/
+syn match ps1Operator /::/
+syn match ps1Operator /,/
+syn match ps1Operator /\(^\|\s\)\@<=\. \@=/
 
 " Regular Strings
 " These aren't precisely correct and could use some work
