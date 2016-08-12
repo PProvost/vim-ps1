@@ -23,7 +23,7 @@ syn case ignore
 syn sync minlines=100
 
 " Certain tokens can't appear at the top level of the document
-syn cluster ps1NotTop contains=@ps1Comment,ps1CDocParam,ps1Function
+syn cluster ps1NotTop contains=@ps1Comment,ps1CDocParam,ps1FunctionDeclaration
 
 " Comments and special comment words
 syn keyword ps1CommentTodo TODO FIXME XXX TBD HACK NOTE contained
@@ -53,15 +53,17 @@ syn match ps1Constant +\$^+
 " Keywords reserved for future use
 syn keyword ps1Keyword class define from using var
 
-" Functions and Cmdlets
-syn match ps1Cmdlet /\w\+-\w\+/
-syn keyword ps1Keyword function nextgroup=ps1Function skipwhite
-syn keyword ps1Keyword filter nextgroup=ps1Function skipwhite
-syn keyword ps1Keyword workflow nextgroup=ps1Function skipwhite
-syn keyword ps1Keyword configuration nextgroup=ps1Function skipwhite
-syn keyword ps1Keyword class nextgroup=ps1Function skipwhite
-syn keyword ps1Keyword enum nextgroup=ps1Function skipwhite
-syn match ps1Function /\w\+-*\w*/ contained
+" Function declarations
+syn keyword ps1Keyword function nextgroup=ps1FunctionDeclaration skipwhite
+syn keyword ps1Keyword filter nextgroup=ps1FunctionDeclaration skipwhite
+syn keyword ps1Keyword workflow nextgroup=ps1FunctionDeclaration skipwhite
+syn keyword ps1Keyword configuration nextgroup=ps1FunctionDeclaration skipwhite
+syn keyword ps1Keyword class nextgroup=ps1FunctionDeclaration skipwhite
+syn keyword ps1Keyword enum nextgroup=ps1FunctionDeclaration skipwhite
+syn match ps1FunctionDeclaration /\w\+\(-\w\+\)*/ contained
+
+" Function invocations
+syn match ps1FunctionInvocation /\w\+\(-\w\+\)\+/
 
 " Type declarations
 syn match ps1Type /\[[a-z0-9_:.]\+\(\[\]\)\?\]/
@@ -138,7 +140,8 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 	HiLink ps1Escape SpecialChar
 	HiLink ps1InterpolationDelimiter Delimiter
 	HiLink ps1Conditional Conditional
-	HiLink ps1Function Function
+	HiLink ps1FunctionDeclaration Function
+	HiLink ps1FunctionInvocation Function
 	HiLink ps1Variable Identifier
 	HiLink ps1ScopedVariable Identifier
 	HiLink ps1VariableName Identifier
@@ -158,7 +161,6 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 	HiLink ps1RepeatAndCmdlet Repeat
 	HiLink ps1Keyword Keyword
 	HiLink ps1KeywordAndCmdlet Keyword
-	HiLink ps1Cmdlet Statement
 	delcommand HiLink
 endif
 
