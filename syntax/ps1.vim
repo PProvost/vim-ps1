@@ -68,7 +68,7 @@ syn match ps1FunctionDeclaration /\w\+\(-\w\+\)*/ contained
 syn match ps1FunctionInvocation /\w\+\(-\w\+\)\+/
 
 " Type declarations
-syn match ps1Type /\[[a-z_][a-z0-9_.]\+\(\[\]\)\?\]/
+syn match ps1Type /\[[a-z_][a-z0-9_.,\[\]]\+\]/
 syn keyword ps1Scope global local private script contained
 
 " Variables and other user defined items
