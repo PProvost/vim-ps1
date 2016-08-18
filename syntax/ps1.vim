@@ -69,13 +69,11 @@ syn match ps1FunctionInvocation /\w\+\(-\w\+\)\+/
 
 " Type declarations
 syn match ps1Type /\[[a-z_][a-z0-9_.,\[\]]\+\]/
-syn keyword ps1Scope global local private script contained
 
-" Variables and other user defined items
-syn match ps1Variable /\$\w\+/
-syn match ps1Variable /\${\w\+:\\\w\+}/
-syn match ps1ScopedVariable /\$\w\+:\w\+/ contains=ps1Scope
-syn match ps1VariableName /\w\+/ contained
+" Variable references
+syn match ps1ScopeModifier /\(global:\|local:\|private:\|script:\)/ contained
+syn match ps1Variable /\$\w\+\(:\w\+\)\?/ contains=ps1ScopeModifier
+syn match ps1Variable /\${\w\+\(:\w\+\)\?}/ contains=ps1ScopeModifier
 
 " Operators
 syn keyword ps1Operator -eq -ne -ge -gt -lt -le -like -notlike -match -notmatch -replace -split -contains -notcontains
@@ -161,13 +159,11 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 	HiLink ps1FunctionDeclaration Function
 	HiLink ps1FunctionInvocation Function
 	HiLink ps1Variable Identifier
-	HiLink ps1ScopedVariable Identifier
-	HiLink ps1VariableName Identifier
 	HiLink ps1Boolean Boolean
 	HiLink ps1Constant Constant
 	HiLink ps1BuiltIn StorageClass
 	HiLink ps1Type Type
-	HiLink ps1Scope Type
+	HiLink ps1ScopeModifier StorageClass
 	HiLink ps1Number Number
 	HiLink ps1Comment Comment
 	HiLink ps1CommentTodo Todo
