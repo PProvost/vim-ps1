@@ -69,7 +69,6 @@ syn match ps1FunctionInvocation /\w\+\(-\w\+\)\+/
 
 " Type declarations
 syn match ps1Type /\[[a-z_][a-z0-9_:.]\+\(\[\]\)\?\]/
-syn match ps1StandaloneType /[a-z0-9_.]\+/ contained
 syn keyword ps1Scope global local private script contained
 
 " Variables and other user defined items
@@ -169,7 +168,6 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 	HiLink ps1BuiltIn StorageClass
 	HiLink ps1Type Type
 	HiLink ps1Scope Type
-	HiLink ps1StandaloneType Type
 	HiLink ps1Number Number
 	HiLink ps1Comment Comment
 	HiLink ps1CommentTodo Todo
