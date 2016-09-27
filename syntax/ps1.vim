@@ -91,7 +91,7 @@ syn match ps1Operator /\*=/
 syn match ps1Operator /\/=/
 syn match ps1Operator /%=/
 syn match ps1Operator /+/
-syn match ps1Operator /-\(\s\|\d\|\$\|(\)\@=/
+syn match ps1Operator /-\(\s\|\d\|\.\|\$\|(\)\@=/
 syn match ps1Operator /\*/
 syn match ps1Operator /\//
 syn match ps1Operator /|/
