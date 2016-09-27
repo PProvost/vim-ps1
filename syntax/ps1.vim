@@ -164,7 +164,6 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 	HiLink ps1BuiltIn StorageClass
 	HiLink ps1Type Type
 	HiLink ps1ScopeModifier StorageClass
-	HiLink ps1Number Number
 	HiLink ps1Comment Comment
 	HiLink ps1CommentTodo Todo
 	HiLink ps1CommentDoc Tag
