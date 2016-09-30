@@ -93,7 +93,7 @@ syn region ps1String start=/@"$/ end=/^"@/ contains=@ps1StringSpecial,@Spell
 syn region ps1String start=/@'$/ end=/^'@/
 
 " Interpolation
-syn match ps1Escape /`./    " NOT contained - you can escape quotes to prevent quoting.
+syn match ps1Escape /`./
 syn region ps1Interpolation matchgroup=ps1InterpolationDelimiter start="$(" end=")" contained contains=ALLBUT,@ps1NotTop
 syn region ps1NestedParentheses start="(" skip="\\\\\|\\)" matchgroup=ps1Interpolation end=")" transparent contained
 syn cluster ps1StringSpecial contains=ps1Escape,ps1Interpolation,ps1Variable,ps1Boolean,ps1Constant,ps1BuiltIn,@Spell
