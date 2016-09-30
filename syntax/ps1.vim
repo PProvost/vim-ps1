@@ -16,6 +16,9 @@ elseif exists("b:current_syntax")
 	finish
 endif
 
+" Operators contain dashes
+setlocal iskeyword+=-
+
 " PowerShell doesn't care about case
 syn case ignore
 
@@ -23,7 +26,7 @@ syn case ignore
 syn sync minlines=100
 
 " Certain tokens can't appear at the top level of the document
-syn cluster ps1NotTop contains=@ps1Comment,ps1CDocParam,ps1Function
+syn cluster ps1NotTop contains=@ps1Comment,ps1CDocParam,ps1FunctionDeclaration
 
 " Comments and special comment words
 syn keyword ps1CommentTodo TODO FIXME XXX TBD HACK NOTE contained
@@ -43,7 +46,6 @@ syn match ps1Keyword /\<where\>/ nextgroup=ps1Block skipwhite
 syn keyword ps1Exception begin process end exit inlinescript parallel sequence
 syn keyword ps1Keyword try catch finally throw
 syn keyword ps1Keyword return filter in trap param data dynamicparam 
-syn match ps1Keyword /&/
 syn keyword ps1Constant $true $false $null
 syn match ps1Constant +\$?+
 syn match ps1Constant +\$_+
@@ -53,35 +55,51 @@ syn match ps1Constant +\$^+
 " Keywords reserved for future use
 syn keyword ps1Keyword class define from using var
 
-" Functions and Cmdlets
-syn match ps1Cmdlet /\w\+-\w\+/
-syn keyword ps1Keyword function nextgroup=ps1Function skipwhite
-syn keyword ps1Keyword filter nextgroup=ps1Function skipwhite
-syn keyword ps1Keyword workflow nextgroup=ps1Function skipwhite
-syn keyword ps1Keyword configuration nextgroup=ps1Function skipwhite
-syn keyword ps1Keyword class nextgroup=ps1Function skipwhite
-syn keyword ps1Keyword enum nextgroup=ps1Function skipwhite
-syn match ps1Function /\w\+-*\w*/ contained
+" Function declarations
+syn keyword ps1Keyword function nextgroup=ps1FunctionDeclaration skipwhite
+syn keyword ps1Keyword filter nextgroup=ps1FunctionDeclaration skipwhite
+syn keyword ps1Keyword workflow nextgroup=ps1FunctionDeclaration skipwhite
+syn keyword ps1Keyword configuration nextgroup=ps1FunctionDeclaration skipwhite
+syn keyword ps1Keyword class nextgroup=ps1FunctionDeclaration skipwhite
+syn keyword ps1Keyword enum nextgroup=ps1FunctionDeclaration skipwhite
+syn match ps1FunctionDeclaration /\w\+\(-\w\+\)*/ contained
+
+" Function invocations
+syn match ps1FunctionInvocation /\w\+\(-\w\+\)\+/
 
 " Type declarations
-syn match ps1Type /\[[a-z0-9_:.]\+\(\[\]\)\?\]/
-syn match ps1StandaloneType /[a-z0-9_.]\+/ contained
-syn keyword ps1Scope global local private script contained
+syn match ps1Type /\[[a-z_][a-z0-9_.,\[\]]\+\]/
 
-" Variables and other user defined items
-syn match ps1Variable /\$\w\+/
-syn match ps1Variable /\${\w\+:\\\w\+}/
-syn match ps1ScopedVariable /\$\w\+:\w\+/ contains=ps1Scope
-syn match ps1VariableName /\w\+/ contained
+" Variable references
+syn match ps1ScopeModifier /\(global:\|local:\|private:\|script:\)/ contained
+syn match ps1Variable /\$\w\+\(:\w\+\)\?/ contains=ps1ScopeModifier
+syn match ps1Variable /\${\w\+\(:\w\+\)\?}/ contains=ps1ScopeModifier
 
-" Operators all start w/ dash
-syn match ps1OperatorStart /-c\?/ nextgroup=ps1Operator
-syn keyword ps1Operator eq ne ge gt lt le like notlike match notmatch replace split /contains/ notcontains contained
-syn keyword ps1Operator ieq ine ige igt ile ilt ilike inotlike imatch inotmatch ireplace isplit icontains inotcontains contained
-syn keyword ps1Operator ceq cne cge cgt clt cle clike cnotlike cmatch cnotmatch creplace csplit ccontains cnotcontains contained
-syn keyword ps1Operator is isnot as join contained
-syn keyword ps1Operator and or not xor band bor bnot bxor contained
-syn keyword ps1Operator f contained
+" Operators
+syn keyword ps1Operator -eq -ne -ge -gt -lt -le -like -notlike -match -notmatch -replace -split -contains -notcontains
+syn keyword ps1Operator -ieq -ine -ige -igt -ile -ilt -ilike -inotlike -imatch -inotmatch -ireplace -isplit -icontains -inotcontains
+syn keyword ps1Operator -ceq -cne -cge -cgt -clt -cle -clike -cnotlike -cmatch -cnotmatch -creplace -csplit -ccontains -cnotcontains
+syn keyword ps1Operator -in -notin
+syn keyword ps1Operator -is -isnot -as -join
+syn keyword ps1Operator -and -or -not -xor -band -bor -bnot -bxor
+syn keyword ps1Operator -f
+syn match ps1Operator /!/
+syn match ps1Operator /=/
+syn match ps1Operator /+=/
+syn match ps1Operator /-=/
+syn match ps1Operator /\*=/
+syn match ps1Operator /\/=/
+syn match ps1Operator /%=/
+syn match ps1Operator /+/
+syn match ps1Operator /-\(\s\|\d\|\.\|\$\|(\)\@=/
+syn match ps1Operator /\*/
+syn match ps1Operator /\//
+syn match ps1Operator /|/
+syn match ps1Operator /%/
+syn match ps1Operator /&/
+syn match ps1Operator /::/
+syn match ps1Operator /,/
+syn match ps1Operator /\(^\|\s\)\@<=\. \@=/
 
 " Regular Strings
 " These aren't precisely correct and could use some work
@@ -99,8 +117,8 @@ syn region ps1NestedParentheses start="(" skip="\\\\\|\\)" matchgroup=ps1Interpo
 syn cluster ps1StringSpecial contains=ps1Escape,ps1Interpolation,ps1Variable,ps1Boolean,ps1Constant,ps1BuiltIn,@Spell
 
 " Numbers
-syn match   ps1Number		"\<\(0[xX]\x\+\|\d\+\)\([KMGTP][B]\)\=\>"
-syn match   ps1Number		"\(\<\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[dD]\="
+syn match   ps1Number		"\(\<\|-\)\@<=\(0[xX]\x\+\|\d\+\)\([KMGTP][B]\)\=\(\>\|-\)\@="
+syn match   ps1Number		"\(\(\<\|-\)\@<=\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[dD]\="
 syn match   ps1Number		"\<\d\+[eE][-+]\=\d\+[dD]\=\>"
 syn match   ps1Number		"\<\d\+\([eE][-+]\=\d\+\)\=[dD]\>"
 
@@ -138,17 +156,14 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 	HiLink ps1Escape SpecialChar
 	HiLink ps1InterpolationDelimiter Delimiter
 	HiLink ps1Conditional Conditional
-	HiLink ps1Function Function
+	HiLink ps1FunctionDeclaration Function
+	HiLink ps1FunctionInvocation Function
 	HiLink ps1Variable Identifier
-	HiLink ps1ScopedVariable Identifier
-	HiLink ps1VariableName Identifier
 	HiLink ps1Boolean Boolean
 	HiLink ps1Constant Constant
 	HiLink ps1BuiltIn StorageClass
 	HiLink ps1Type Type
-	HiLink ps1Scope Type
-	HiLink ps1StandaloneType Type
-	HiLink ps1Number Number
+	HiLink ps1ScopeModifier StorageClass
 	HiLink ps1Comment Comment
 	HiLink ps1CommentTodo Todo
 	HiLink ps1CommentDoc Tag
@@ -158,7 +173,6 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 	HiLink ps1RepeatAndCmdlet Repeat
 	HiLink ps1Keyword Keyword
 	HiLink ps1KeywordAndCmdlet Keyword
-	HiLink ps1Cmdlet Statement
 	delcommand HiLink
 endif
 
