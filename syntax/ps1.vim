@@ -8,6 +8,7 @@
 " The following settings are available for tuning syntax highlighting:
 "    let ps1_nofold_blocks = 1
 "    let ps1_nofold_sig = 1
+"    let ps1_nofold_region = 1
 
 " Compatible VIM syntax file start
 if version < 600
@@ -135,6 +136,10 @@ if !exists('g:ps1_nofold_blocks')
 	syn region ps1Block start=/{/ end=/}/ transparent fold
 endif
 
+if !exists('g:ps1_nofold_region')
+	syn region ps1Region start=/#region/ end=/#endregion/ transparent fold keepend extend
+endif
+
 if !exists('g:ps1_nofold_sig')
 	syn region ps1Signature start=/# SIG # Begin signature block/ end=/# SIG # End signature block/ transparent fold
 endif
@@ -150,6 +155,7 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 
 	HiLink ps1Number Number
 	HiLink ps1Block Block
+	HiLink ps1Region Region
 	HiLink ps1Exception Exception
 	HiLink ps1Constant Constant
 	HiLink ps1String String
@@ -177,4 +183,3 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 endif
 
 let b:current_syntax = "ps1"
-
