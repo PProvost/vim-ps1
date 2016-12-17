@@ -9,6 +9,7 @@
 "    let ps1_nofold_blocks = 1
 "    let ps1_nofold_sig = 1
 "    let ps1_nofold_region = 1
+"    let ps1_pester_syntax = 1
 
 " Compatible VIM syntax file start
 if version < 600
@@ -52,6 +53,12 @@ syn match ps1Constant +\$?+
 syn match ps1Constant +\$_+
 syn match ps1Constant +\$\$+
 syn match ps1Constant +\$^+
+
+" Pester keywords
+if exists('g:ps1_pester_syntax') && g:ps1_pester_syntax
+	syn keyword PesterCommands describe context it should beforeeach aftereach in new-fixture invoke-pester new-pesteroption mock assert-verifiablemocks assert-mockcalled inmodulescope set-testinconclusive
+	syn keyword PesterShouldOperators be beexactly begreaterthan belessthan belike belikeexactly beoftype exist contain containexactly match matchexactly throw benullorempty
+endif
 
 " Keywords reserved for future use
 syn keyword ps1Keyword class define from using var
@@ -179,6 +186,9 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 	HiLink ps1RepeatAndCmdlet Repeat
 	HiLink ps1Keyword Keyword
 	HiLink ps1KeywordAndCmdlet Keyword
+	HiLink PesterCommands Keyword
+	HiLink PesterShouldOperators Keyword
+
 	delcommand HiLink
 endif
 
