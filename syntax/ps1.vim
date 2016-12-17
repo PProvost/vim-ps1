@@ -57,7 +57,7 @@ syn match ps1Constant +\$^+
 " Pester keywords
 if exists('g:ps1_pester_syntax') && g:ps1_pester_syntax
 	syn keyword PesterCommands describe context it should beforeeach aftereach in new-fixture invoke-pester new-pesteroption mock assert-verifiablemocks assert-mockcalled inmodulescope set-testinconclusive
-	syn keyword PesterShouldOperators be beexactly begreaterthan belessthan belike belikeexactly beoftype exist contain containexactly match matchexactly throw benullorempty
+	syn keyword PesterShouldOperators not be beexactly begreaterthan belessthan belike belikeexactly beoftype exist contain containexactly match matchexactly throw benullorempty
 endif
 
 " Keywords reserved for future use
