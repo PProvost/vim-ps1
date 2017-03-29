@@ -1,20 +1,87 @@
 " Vim indent file
-" Language:           Windows PowerShell
-" Maintainer:         Peter Provost <peter@provost.org>
-" Version:            2.10
-" Project Repository: https://github.com/PProvost/vim-ps1
-" Vim Script Page:    http://www.vim.org/scripts/script.php?script_id=1327"
+" Language:       Windows PowerShell
+" Maintainer:
+"   Lior Elia - http://blogs.msdn.com/lior
+"   Crane Jin <crane@cranejin.com>
+" Version:        2.0.1
+" Last Change:    2016 Aug 10
+" Changelist:
+"    1.0     2009-10-04    LiorE       Comment rows
+"    2.0     2009-10-18    LiorE       Lines after (.*), comments after '{' or
+"                                      '}' and many many other things. I've made
+"                                      this a major version change because there
+"                                      are many changes in the behavior.
+"    2.0.1   2016-08-10    cranej      Remove debug code
+
+" Dedicated to my loving and supporting family: Anat, Amit and Ofir.
 
 " Only load this indent file when no other was loaded.
 if exists("b:did_indent")
-	finish
+    finish
 endif
 let b:did_indent = 1
 
-" smartindent is good enough for powershell
-setlocal smartindent
-" disable the indent removal for # marks
-inoremap # X#
+setlocal cindent cinoptions& cinoptions+=+0
 
-let b:undo_indent = "setl si<"
+" Set the function to do the work.
+setlocal indentexpr=GetPsIndent()
+
+let b:undo_indent = "set cin< cino< indentkeys< indentexpr<"
+
+" Only define the function once.
+if exists("*GetPsIndent")
+    finish
+endif
+
+function! SkipPsComments(startline)
+    let lnum = a:startline
+    while lnum > 1
+        let lnum = prevnonblank(lnum)
+        if getline(lnum) =~ '^\s*#'
+            let lnum = lnum - 1
+        else
+            break
+        endif
+    endwhile
+    return lnum
+endfunction
+
+function GetPsIndent()
+    " PowerShell is almost like C; use the built-in C indenting and then correct the comment/precompiler duality.
+    let theIndent = cindent(v:lnum)
+    let prevLine = SkipPsComments(v:lnum-1)
+    if (prevLine > 0)
+        let prevLineIndent = indent(prevLine)
+    else
+        let prevLineIndent = 0
+    endif
+
+    " if prev line ends with paranthesis (...) it messes the indentation
+    if getline(prevLine) =~ '(.*)$'
+        " set the indent to be the same of the prev non blank non comment line
+        let theIndent = prevLineIndent
+        if getline(v:lnum) =~ '^[^{]*}'
+            " remove one indentation level, clsoing a block
+            let theIndent -= &sw
+        endif
+    endif
+
+    " comment lines are mishandled as precompiler directives ('#') so fix that.
+    " if current line is a comment...
+    if getline(v:lnum) =~ '^\s*#'
+        let theIndent = prevLineIndent
+        " if prev line opened a block -
+        if getline(prevLine) =~ '{$'
+            " indent once more, because we're in a beginning of a block
+            let theIndent += &sw
+        elseif getline(prevLine) =~ '([^)]*$'
+            " indent twice more, because we're in a beginning of a parameters
+            " block which gets indented twice by cindent, for some obscure
+            " reason...
+            let theIndent += &sw
+            let theIndent += &sw
+        endif
+    endif
+    return theIndent
+endfunction
 
