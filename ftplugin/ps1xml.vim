@@ -14,6 +14,7 @@ let b:did_ftplugin = 1
 setlocal tw=0
 setlocal commentstring=#%s
 setlocal formatoptions=tcqro
+setlocal fileformat=dos
 " MS applications (including PowerShell) require a Byte Order Mark (BOM) for UTF-8.
 setlocal bomb
 
