@@ -1,6 +1,6 @@
 *ps1.txt*  A Windows PowerShell syntax plugin for Vim
 
-Maintainer: Peter Provost <http://www.github.com/PProvost>
+Maintainer: Peter Provost <https://www.github.com/PProvost>
 License:    Apache 2.0
 Version:    2.10
 
@@ -14,7 +14,7 @@ ABOUT                                                           *ps1-about*
 
 Grab the latest version or report a bug on GitHub:
 
-http://github.com/PProvost/vim-ps1
+https://github.com/PProvost/vim-ps1
 
 
 FOLDING                                                         *ps1-folding*
