@@ -34,5 +34,21 @@ Digital signatures in scripts will also be folded unless you use: >
 Note: syntax folding might slow down syntax highlighting significantly,
 especially for large files.
 
+
+COMPILER                                                        *ps1-compiler*
+
+The powershell |compiler| script configures |:make| to execute the script in
+PowerShell.
+
+It tries to pick a smart default PowerShell command: `pwsh` if available and
+`powershell` otherwise, but you can customize the command: >
+
+    :let g:ps1_makeprg_cmd = '/path/to/pwsh'
+<
+To configure whether to show the exception type information: >
+
+    :let g:ps1_efm_show_error_categories = 1
+<
+
 ------------------------------------------------------------------------------
  vim:ft=help:
