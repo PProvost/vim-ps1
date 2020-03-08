@@ -50,5 +50,9 @@ To configure whether to show the exception type information: >
     :let g:ps1_efm_show_error_categories = 1
 <
 
+KEYWORD LOOKUP                                                 *ps1-keyword*
+
+To look up keywords by PowerShell's Get-Help, hit the |K| key.
+
 ------------------------------------------------------------------------------
  vim:ft=help:
