@@ -52,7 +52,7 @@ To configure whether to show the exception type information: >
 
 KEYWORD LOOKUP                                                 *ps1-keyword*
 
-To look up keywords by PowerShell's Get-Help, hit the |K| key.
+To look up keywords using PowerShell's Get-Help, hit the |K| key.
 
 ------------------------------------------------------------------------------
  vim:ft=help:

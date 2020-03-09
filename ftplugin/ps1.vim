@@ -40,11 +40,13 @@ endif
 if exists('s:pwsh_cmd')
   if !has('gui_running') && executable('less')
     command! -buffer -nargs=1 GetHelp silent exe '!' . s:pwsh_cmd . ' -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -Command Get-Help -Full "<args>" | ' . (has('unix') ? 'LESS= less' : 'less') | redraw!
-    setlocal keywordprg=:GetHelp
+  elseif has('terminal')
+    command! -buffer -nargs=1 GetHelp silent exe 'term ' . s:pwsh_cmd . ' -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -Command Get-Help -Full "<args>"' . (executable('less') ? ' | less' : '') | call term_wait('', 3000) | call cursor(1,1)
   else
-    let &l:keywordprg = (has('terminal') ? ':term ' : '') . s:pwsh_cmd . ' -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -Command Get-Help -Full'
+    command! -buffer -nargs=1 GetHelp echo system(s:pwsh_cmd . ' -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -Command Get-Help -Full <args>')
   endif
 endif
+setlocal keywordprg=:GetHelp
 
 " Undo the stuff we changed
 let b:undo_ftplugin = "setlocal tw< cms< fo< iskeyword< keywordprg<" .
