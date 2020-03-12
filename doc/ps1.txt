@@ -50,5 +50,15 @@ To configure whether to show the exception type information: >
     :let g:ps1_efm_show_error_categories = 1
 <
 
+KEYWORD LOOKUP                                                 *ps1-keyword*
+
+To look up keywords using PowerShell's Get-Help, press the |K| key. For more
+convenient paging, the pager `less` should be installed, which is included in
+many Linux distributions and in macOS.
+
+Many other distributions are available for Windows like
+https://chocolatey.org/packages/less/. Make sure `less` is in a directory
+listed in the `PATH` environment variable, which chocolatey above does.
+
 ------------------------------------------------------------------------------
  vim:ft=help:
