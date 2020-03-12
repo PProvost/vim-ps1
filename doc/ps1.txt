@@ -52,15 +52,13 @@ To configure whether to show the exception type information: >
 
 KEYWORD LOOKUP                                                 *ps1-keyword*
 
-To look up keywords using PowerShell's Get-Help, hit the |K| key. For more
+To look up keywords using PowerShell's Get-Help, press the |K| key. For more
 convenient paging, the pager `less` should be installed, which is included in
 many Linux distributions and in macOS.
 
-It is available for Windows at https://chocolatey.org/packages/less/.
-Please ensure that the path to the folder that contains the less executable is
-included in the environment variable `%PATH%`. The cited package ensures this.
-otherwise, this can be conveniently ensured by `Rapidee`, available at
-http://www.rapidee.com/.
+Many other distributions are available for Windows like
+https://chocolatey.org/packages/less/. Make sure `less` is in a directory
+listed in the `PATH` environment variable, which chocolatey above does.
 
 ------------------------------------------------------------------------------
  vim:ft=help:
