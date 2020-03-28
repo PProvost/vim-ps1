@@ -24,6 +24,7 @@ if !exists("g:ps1_makeprg_cmd")
     let g:ps1_makeprg_cmd = 'powershell.exe'
   else
     let g:ps1_makeprg_cmd = ''
+  endif
 endif
 
 if !executable(g:ps1_makeprg_cmd)
