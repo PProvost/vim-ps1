@@ -37,7 +37,7 @@ especially for large files.
 
 LINTER                                                          *ps1-linter*
 
-The powershell |compiler| script 'pwsh.vim' configures |:make| to lint the
+The powershell |compiler| script 'pwsh-lint.vim' configures |:make| to lint the
 script in PowerShell.
 
 It tries to pick a smart default PowerShell command: `pwsh` if available and
@@ -48,7 +48,7 @@ It tries to pick a smart default PowerShell command: `pwsh` if available and
 
 COMPILER                                                        *ps1-compiler*
 
-The powershell |compiler| script 'powershell.vim' configures |:make| to
+The powershell |compiler| script 'pwsh-run.vim' configures |:make| to
 execute the script in PowerShell.
 
 It tries to pick a smart default PowerShell command: `pwsh` if available and
