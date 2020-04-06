@@ -29,6 +29,7 @@ endif
 
 if !executable(g:ps1_makeprg_cmd)
   echoerr "To use the powershell compiler, please set g:ps1_makeprg_cmd to the powershell executable!"
+  finish
 endif
 
 " Show CategoryInfo, FullyQualifiedErrorId, etc?
