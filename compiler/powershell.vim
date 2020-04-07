@@ -36,15 +36,29 @@ endif
 let g:ps1_efm_show_error_categories = get(g:, 'ps1_efm_show_error_categories', 0)
 
 let &l:makeprg = g:ps1_makeprg_cmd
-" Load Vanilla Shell and show additional context
+" Load Vanilla Shell and show syntax errors
+" See https://zigford.org/powershell-syntax-now-supported-by-ale-vim-plugin.html
+if has('win32')
 setlocal makeprg+=\ -NoProfile\ -NoLogo\ -NonInteractive\ -command\ \"&{
-    \trap{$_.tostring();continue}&{
-    \[void]$executioncontext.invokecommand.invokescript('%')
-    \}
-\}\"
+        \trap{$_.tostring();continue}&{
+        \[void]$executioncontext.invokecommand.invokescript('%')
+        \}
+    \}\"
+elseif has('unix')
+setlocal makeprg+=\ -NoProfile\ -NoLogo\ -NonInteractive\ -command\ "&{
+          \trap{\\$_.tostring();continue}&{
+          \[void]\\$executioncontext.invokecommand.invokescript('%')
+          \}
+          \}"
+    \}\"
+else
+  echoerr "To use the powershell compiler, please run it under Microsoft Windows or Unix!"
+  finish
+endif
 " Use absolute path because powershell requires explicit relative paths
 " (./file.ps1 is okay, but # expands to file.ps1)
 setlocal makeprg+=\ %:p:S
+silent CompilerSet makeprg
 
 " Parse file, line, char from callstacks:
 "     Write-Ouput : The term 'Write-Ouput' is not recognized as the name of a
