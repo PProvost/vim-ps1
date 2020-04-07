@@ -35,9 +35,16 @@ endif
 " Show CategoryInfo, FullyQualifiedErrorId, etc?
 let g:ps1_efm_show_error_categories = get(g:, 'ps1_efm_show_error_categories', 0)
 
+let &l:makeprg = g:ps1_makeprg_cmd
+" Load Vanilla Shell and show additional context
+setlocal makeprg+=\ -NoProfile\ -NoLogo\ -NonInteractive\ -command\ \"&{
+    \trap{$_.tostring();continue}&{
+    \[void]$executioncontext.invokecommand.invokescript('%')
+    \}
+\}\"
 " Use absolute path because powershell requires explicit relative paths
 " (./file.ps1 is okay, but # expands to file.ps1)
-let &l:makeprg = g:ps1_makeprg_cmd .' %:p:S'
+setlocal makeprg+=\ %:p:S
 
 " Parse file, line, char from callstacks:
 "     Write-Ouput : The term 'Write-Ouput' is not recognized as the name of a
