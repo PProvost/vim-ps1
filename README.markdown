@@ -24,6 +24,8 @@ Or even better, use [pathogen.vim][1] and simply pull it in like this:
 
     cd ~/.vim/bundle
     git clone https://github.com/PProvost/vim-ps1.git
+    
+If you use [vim-plug][4] add `Plug 'pprovost/vim-ps1'` to your config.
 
 Folding
 -------
@@ -88,3 +90,4 @@ Version History
 [1]: https://github.com/tpope/vim-pathogen
 [2]: https://github.com/PProvost/vim-ps1
 [3]: http://www.vim.org/scripts/script.php?script_id=1327
+[4]: https://github.com/junegunn/vim-plug
