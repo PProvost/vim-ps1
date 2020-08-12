@@ -11,6 +11,8 @@ if exists("b:did_ftplugin") | finish | endif
 " Don't load another plug-in for this buffer
 let b:did_ftplugin = 1
 
+compiler psake
+
 setlocal tw=0
 setlocal commentstring=#%s
 setlocal formatoptions=tcqro
