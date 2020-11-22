@@ -109,6 +109,7 @@ syn match ps1Operator /&/
 syn match ps1Operator /::/
 syn match ps1Operator /,/
 syn match ps1Operator /\(^\|\s\)\@<=\. \@=/
+syn match ps1Operator /\s-\w\+/
 
 " Regular Strings
 " These aren't precisely correct and could use some work
