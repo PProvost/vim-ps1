@@ -109,7 +109,6 @@ syn match ps1Operator /&/
 syn match ps1Operator /::/
 syn match ps1Operator /,/
 syn match ps1Operator /\(^\|\s\)\@<=\. \@=/
-syn match ps1Operator /\s-\w\+/
 
 " Regular Strings
 " These aren't precisely correct and could use some work
@@ -139,6 +138,9 @@ syn match ps1BuiltIn "$^\|$?\|$_\|$\$"
 syn match ps1BuiltIn "$\%(args\|error\|foreach\|home\|input\)\>"
 syn match ps1BuiltIn "$\%(match\(es\)\?\|myinvocation\|host\|lastexitcode\)\>"
 syn match ps1BuiltIn "$\%(ofs\|shellid\|stacktrace\)\>"
+
+" Named Switch
+syn match ps1Label /\s-\w\+/
 
 " Folding blocks
 if !exists('g:ps1_nofold_blocks')
@@ -188,6 +190,7 @@ if version >= 508 || !exists("did_ps1_syn_inits")
 	HiLink ps1RepeatAndCmdlet Repeat
 	HiLink ps1Keyword Keyword
 	HiLink ps1KeywordAndCmdlet Keyword
+	HiLink ps1Label Label
 	delcommand HiLink
 endif
 
