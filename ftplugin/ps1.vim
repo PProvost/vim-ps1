@@ -51,5 +51,6 @@ if exists('s:pwsh_cmd')
 endif
 
 " Undo the stuff we changed
-let b:undo_ftplugin = "setlocal tw< cms< fo< iskeyword< keywordprg< | sil! delc -buffer Ps1KeywordPrg" .
+let b:undo_ftplugin = "setlocal tw< cms< fo< iskeyword< keywordprg<" .
+                        \ " | sil! delc -buffer Ps1KeywordPrg" .
 			\ " | unlet! b:browsefilter"
