@@ -140,7 +140,7 @@ syn match ps1BuiltIn "$\%(match\(es\)\?\|myinvocation\|host\|lastexitcode\)\>"
 syn match ps1BuiltIn "$\%(ofs\|shellid\|stacktrace\)\>"
 
 " Named Switch
-syn match ps1Label /\s-\w\+/
+syn match ps1Label /\s-\h\w*/
 
 " Folding blocks
 if !exists('g:ps1_nofold_blocks')
