@@ -17,6 +17,9 @@ setlocal formatoptions+=tcqroj
 " Enable autocompletion of hyphenated PowerShell commands,
 " e.g. Get-Content or Get-ADUser
 setlocal iskeyword+=-
+" Make string literal related text objects work properly when string
+" contains escaped quote characters
+setlocal quoteescape=`
 
 " Change the browse dialog on Win32 to show mainly PowerShell-related files
 if has("gui_win32")
@@ -51,6 +54,6 @@ if exists('s:pwsh_cmd')
 endif
 
 " Undo the stuff we changed
-let b:undo_ftplugin = "setlocal tw< cms< fo< iskeyword< keywordprg<" .
+let b:undo_ftplugin = "setlocal tw< cms< fo< iskeyword< keywordprg< quoteescape<" .
                         \ " | sil! delc -buffer Ps1KeywordPrg" .
 			\ " | unlet! b:browsefilter"
