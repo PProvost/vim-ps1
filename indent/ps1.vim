@@ -15,11 +15,11 @@ setlocal cindent
 " Disable zero indentation of lines started with "#" in insert mode, which are comments
 setlocal cinkeys-=0#
 " Enable detection of Shell/Perl style comments
-setlocal cinoptions+=#1
+setlocal cinoptions+=#1s
 " Disable additonal indentation for "continuation lines", which are all the lines missing ";"
 setlocal cinoptions+=+0
 " Make indentation single for unclosed parentheses (multiline argument lists and array literals).
 " By default it's shiftwidth * 2
-execute "setlocal cinoptions+=(" . &shiftwidth
+setlocal cinoptions+=(1s
 
 let b:undo_indent = "setl cindent< cinkeys< cinoptions<"
