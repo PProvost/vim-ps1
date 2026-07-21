@@ -11,10 +11,15 @@ if exists("b:did_indent")
 endif
 let b:did_indent = 1
 
-" smartindent is good enough for powershell
-setlocal smartindent
-" disable the indent removal for # marks
-inoremap <buffer> # X#
+setlocal cindent
+" Disable zero indentation of lines started with "#" in insert mode, which are comments
+setlocal cinkeys-=0#
+" Enable detection of Shell/Perl style comments
+setlocal cinoptions+=#1s
+" Disable additonal indentation for "continuation lines", which are all the lines missing ";"
+setlocal cinoptions+=+0
+" Make indentation single for unclosed parentheses (multiline argument lists and array literals).
+" By default it's shiftwidth * 2
+setlocal cinoptions+=(1s
 
-let b:undo_indent = "setl si<"
-
+let b:undo_indent = "setl cindent< cinkeys< cinoptions<"
