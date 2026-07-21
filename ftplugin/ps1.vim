@@ -24,9 +24,10 @@ setlocal quoteescape=`
 " Change the browse dialog on Win32 to show mainly PowerShell-related files
 if has("gui_win32")
 	let b:browsefilter =
-				\ "All PowerShell Files (*.ps1, *.psd1, *.psm1, *.ps1xml)\t*.ps1;*.psd1;*.psm1;*.ps1xml\n" .
+				\ "All PowerShell Files (*.ps1, *.psd1, *.psm1, *.psrc, *.ps1xml)\t*.ps1;*.psd1;*.psm1;*.psrc;*.ps1xml\n" .
 				\ "PowerShell Script Files (*.ps1)\t*.ps1\n" .
 				\ "PowerShell Module Files (*.psd1, *.psm1)\t*.psd1;*.psm1\n" .
+				\ "PowerShell Rule Capability Files (*.psrc)\t*.psrc\n" .
 				\ "PowerShell XML Files (*.ps1xml)\t*.ps1xml\n" .
 				\ "All Files (*.*)\t*.*\n"
 endif

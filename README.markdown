@@ -4,8 +4,9 @@ ps1.vim
 If you are a Windows PowerShell user who uses Vim or Gvim for editing scripts, 
 then this plugin is for you.
 
-It provides nice syntax coloring and indenting for Windows PowerShell (.ps1)
-files, and also includes a filetype plugin so Vim can autodetect your PS1 scripts.
+It provides nice syntax coloring and indenting for Windows PowerShell scripts,
+modules, and rule capability files (.psrc), and also includes a filetype
+plugin so Vim can autodetect those PowerShell files.
 
 Includes contributions by:
 
